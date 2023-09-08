@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verificar Parâmetro na URL</title>
+</head>
+<body>
+    <script>
+        // Função para obter o valor do parâmetro 'opcao' na URL
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Obtenha o valor do parâmetro 'opcao' na URL
+        var opcao = getParameterByName('opcao');
+
+        // Verifique se 'opcao' é igual a 0 ou 1 e exiba no console
+        if (opcao === '0' || opcao === '1') {
+            console.log("O valor de 'opcao' na URL é: " + opcao);
+        } else {
+            console.log("O valor de 'opcao' na URL não é 0 nem 1.");
+        }
+    </script>
+</body>
+</html>
